@@ -15,8 +15,8 @@ export default function MemoryGameBoard ({
         key={card.id}
         type={card.description}
         id={card.id}
-        width={120}
-        height={120}
+        width={110}
+        height={110}
         turned={turned.includes(card.id)}
         handleClick={handleClick}
         gamestop={gamestop || matched.includes(card.id)}

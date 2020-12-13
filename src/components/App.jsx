@@ -1,12 +1,11 @@
 import React from 'react'
-import MemoryGame from './memory-game'
-
+import PwdWindowManager from './window-manager'
 import './App.css'
 
 export default function App () {
   return (
   <div className="App">
-    <MemoryGame />
+  <PwdWindowManager />
   </div>
   )
 }

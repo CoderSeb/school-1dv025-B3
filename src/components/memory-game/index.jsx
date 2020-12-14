@@ -7,7 +7,7 @@ import MemoryGameBoard from './memory-game-board'
  *
  * @returns {object}
  */
-export default function MemoryGame () {
+export default function MemoryGame ({ gameID }) {
   const [cards, setCards] = useState([])
   const [turned, setTurned] = useState([])
   const [matched, setMatched] = useState([])
@@ -56,7 +56,7 @@ export default function MemoryGame () {
   const clickedTwice = id => turned.includes(id)
 
   return (
-    <div>
+    <div id={gameID}>
       <h2>Memory Game</h2>
       <MemoryGameBoard
         cards={cards}

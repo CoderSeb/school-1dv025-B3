@@ -1,6 +1,10 @@
 .window-manager-container {
   width:100%;
   height:100%;
+  display:grid;
+  grid-template-columns:auto auto;
+  grid-template-rows:auto;
+  gap:1em;
 }
 
 .new-window {
@@ -38,4 +42,23 @@
   display:inline-block;
   margin:10px 40px 5px 40px;
   text-align:center;
+}
+
+.closeBtn {
+  width:30px;
+  font-size:1em;
+  border-radius:50%;
+  border:none;
+  float:right;
+  background:#7cce7c;
+}
+
+.closeBtn:hover {
+  background:#ffff00;
+  color:#070ada;
+}
+
+.closeBtn:active {
+  background:#7cce7c;
+  font-weight: bold;
 }

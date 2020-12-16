@@ -5,6 +5,7 @@ import MemoryGameBoard from './memory-game-board'
 /**
  * MemoryGame main function.
  *
+ * @param {string} gameID
  * @returns {object}
  */
 export default function MemoryGame ({ gameID }) {

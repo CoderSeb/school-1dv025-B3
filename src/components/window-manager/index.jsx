@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import './styles.css'
 import MemoryGame from '../memory-game'
+import ChatApp from '../chat-app'
+import Draggable from 'react-draggable'
+
 
 export default function PwdWindowManager () {
   const windowArray = []
@@ -23,13 +26,23 @@ export default function PwdWindowManager () {
       windowArray.push(newMemory)
     }
 
+    if (id === 'chatBtn') {
+      const newChat = <ChatApp gameID={'n-c' + i++} />
+      windowArray.push(newChat)
+    }
+
     ReactDOM.render(
       windowArray.map(appWindow => {
         return (
-        <div className="new-window" id={'new-window' + i++}>
-        <button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
-        {appWindow}
-        </div>
+        <Draggable>
+          <div
+          className="new-window"
+          id={'new-window' + i++}
+          >
+            <button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
+            {appWindow}
+          </div>
+        </Draggable>
         )
       }),
       document.querySelector('.window-manager-container')
@@ -39,7 +52,6 @@ export default function PwdWindowManager () {
   return (
     <div className="PwdWindowManager">
       <div className="window-manager-container">
-      {windowArray}
       </div>
       <div className="ActivityBar">
         <button className="appSlots" id="memBtn" onClick={e => openWindow(e.target.id)}>Memory Game</button>

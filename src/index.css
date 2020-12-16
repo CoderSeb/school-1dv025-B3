@@ -1,3 +1,5 @@
 body {
-  background: rgb(173, 240, 153);
+  background: rgb(167, 235, 147);
+  max-height:100vh;
+  text-align:center;
 }

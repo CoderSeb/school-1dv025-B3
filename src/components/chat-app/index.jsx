@@ -8,26 +8,29 @@ const api = apiText.apikey
 
 export default function ChatApp ({ gameID }) {
   const [messages, setMessages] = useState([])
-  const [username, setUsername] = useState(null)
+  const [username, setUsername] = useState(localStorage.getItem('chat_user_name53421'))
   const messageRef = useRef()
   const usernameRef = useRef()
+  const websocket = useRef(null)
 
-  const websocket = new WebSocket('wss://cscloud6-127.lnu.se/socket/') || {}
+  useEffect(() => {
+    websocket.current = new WebSocket('wss://cscloud6-127.lnu.se/socket/')
+    websocket.current.onopen = () => console.log('Websocket opened')
+    websocket.current.onclose = () => console.log('Websocket closed')
 
-  websocket.onopen = () => {
-    console.log('Opened web socket connection...')
-  }
-
-  websocket.onclose = (e) => {
-    console.log('Closed web socket connection: ', e.code, e.reason)
-  }
-
-  websocket.onmessage = (e) => {
-    const parsed = JSON.parse(e.data)
-    if (parsed.username !== 'The Server') {
-      setMessages([...messages, parsed])
+    return () => {
+      websocket.current.close()
     }
-  }
+  }, [])
+  useEffect(() => {
+    if (!websocket.current) return
+
+    websocket.current.onmessage = e => {
+      const message = JSON.parse(e.data)
+      console.log(message.type)
+      setMessages([...messages, message])
+    }
+  }, [messages, setMessages])
 
   const saveMessage = () => {
     const fullMessage = {
@@ -37,8 +40,7 @@ export default function ChatApp ({ gameID }) {
       channel: 'my, not so secret, channel',
       key: api
     }
-    setMessages([...messages, fullMessage])
-    websocket.send(JSON.stringify(fullMessage))
+    websocket.current.send(JSON.stringify(fullMessage))
   }
 
   const saveUsername = () => {

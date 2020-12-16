@@ -50,6 +50,7 @@
     "fs": "0.0.1-security",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-draggable": "^4.4.3"
+    "react-draggable": "^4.4.3",
+    "use-socket.io-client": "^1.1.0"
   }
 }

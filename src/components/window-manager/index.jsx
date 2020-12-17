@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import './styles.css'
 import MemoryGame from '../memory-game'
 import ChatApp from '../chat-app'
+import WeatherApp from '../weather-app'
 import Draggable from 'react-draggable'
 
 
@@ -30,6 +31,11 @@ export default function PwdWindowManager () {
 
     if (id === 'chatBtn') {
       const newChat = <ChatApp gameID={'n-c' + i++} />
+      windowArray.push(newChat)
+    }
+
+    if (id === 'wthBtn') {
+      const newChat = <WeatherApp gameID={'n-w' + i++} />
       windowArray.push(newChat)
     }
 
@@ -66,7 +72,7 @@ export default function PwdWindowManager () {
       <div className="ActivityBar">
         <button className="appSlots" id="memBtn" onClick={e => openWindow(e.target.id)}>Memory Game</button>
         <button className="appSlots" id="chatBtn" onClick={e => openWindow(e.target.id)}>Chat App</button>
-        <button className="appSlots" id="othBtn" onClick={e => openWindow(e.target.id)}>Other app</button>
+        <button className="appSlots" id="wthBtn" onClick={e => openWindow(e.target.id)}>Weather App</button>
       </div>
     </div>
   )

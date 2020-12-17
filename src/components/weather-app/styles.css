@@ -1,0 +1,14 @@
+.WeatherApp {
+  height:400px;
+  width:400px;
+  padding:1em;
+}
+
+#cities {
+  width:140px;
+  height:40px;
+  color:rgb(13, 77, 0);
+  background:rgb(138, 250, 138);
+  font-weight:bold;
+  margin:10px;
+}

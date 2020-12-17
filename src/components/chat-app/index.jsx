@@ -15,6 +15,7 @@ export default function ChatApp ({ gameID }) {
 
   useEffect(() => {
     websocket.current = new WebSocket('wss://cscloud6-127.lnu.se/socket/')
+
     websocket.current.onopen = () => console.log('Websocket opened')
     websocket.current.onclose = () => console.log('Websocket closed')
 
@@ -41,6 +42,7 @@ export default function ChatApp ({ gameID }) {
       key: api
     }
     websocket.current.send(JSON.stringify(fullMessage))
+    messageRef.current.value = ''
   }
 
   const saveUsername = () => {
@@ -48,11 +50,11 @@ export default function ChatApp ({ gameID }) {
     setUsername(localStorage.getItem('chat_user_name53421'))
   }
 
-  // const sendMessageIfEnter = (e) => {
-  //   if (e.keyCode === 13) {
-  //     sendMessage()
-  //   }
-  // }
+  const sendMessageIfEnter = (e) => {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+      saveMessage()
+    }
+  }
 
   if (localStorage.getItem('chat_user_name53421') === null || localStorage.getItem('chat_user_name53421') === '') {
     return (
@@ -77,7 +79,7 @@ export default function ChatApp ({ gameID }) {
             )
           })}
           </div>
-          <textarea className="chatInput" ref={messageRef}></textarea>
+          <textarea className="chatInput" onKeyDown={sendMessageIfEnter} ref={messageRef}></textarea>
           <button onClick={saveMessage} className="chatSendBtn">Send!</button>
       </div>
     )

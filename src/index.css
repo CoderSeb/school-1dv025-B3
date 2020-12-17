@@ -1,5 +1,6 @@
 body {
   background: rgb(167, 235, 147);
   max-height:100vh;
+  box-sizing: border-box;
   text-align:center;
 }

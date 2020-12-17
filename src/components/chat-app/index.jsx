@@ -9,9 +9,11 @@ const api = apiText.apikey
 export default function ChatApp ({ gameID }) {
   const [messages, setMessages] = useState([])
   const [username, setUsername] = useState(localStorage.getItem('chat_user_name53421'))
+  const [changeUser, setChangeUser] = useState(false)
   const messageRef = useRef()
   const usernameRef = useRef()
   const websocket = useRef(null)
+
 
   useEffect(() => {
     websocket.current = new WebSocket('wss://cscloud6-127.lnu.se/socket/')
@@ -28,7 +30,6 @@ export default function ChatApp ({ gameID }) {
 
     websocket.current.onmessage = e => {
       const message = JSON.parse(e.data)
-      console.log(message.type)
       setMessages([...messages, message])
     }
   }, [messages, setMessages])
@@ -56,31 +57,36 @@ export default function ChatApp ({ gameID }) {
     }
   }
 
-  if (localStorage.getItem('chat_user_name53421') === null || localStorage.getItem('chat_user_name53421') === '') {
+  if (localStorage.getItem('chat_user_name53421') === null || localStorage.getItem('chat_user_name53421') === '' || changeUser) {
     return (
       <div id={gameID} className="ChatApp">
         <h1>ChatApp</h1>
         <h3>Enter username:</h3>
         <input maxLength="15" className="usernameInput" ref={usernameRef} type="text"/>
-        <button onClick={saveUsername} className="chatBtnUsername">Save username</button>
+        <button onClick={() => {
+          saveUsername()
+          setChangeUser(false)
+        }} className="chatBtnUsername">Save username</button>
       </div>
     )
   } else {
     return (
       <div id={gameID} className='ChatApp'>
           <h1>ChatApp</h1>
+          <h2>{username} is connected</h2>
           <div className="chatMessages">
           {messages.map(message => {
             return (
                 <p
                 className={localStorage.getItem('chat_user_name53421') === message.username ? 'messageTo' : 'messageFrom'}
-                key={message.data + Math.random().toString(36).substring(2)}>
-                {localStorage.getItem('chat_user_name53421') === message.username ? localStorage.getItem('chat_user_name53421') : message.username}: {message.data}</p>
+                key={message.data + Math.random().toString(36).substring(2)}><strong>
+                {localStorage.getItem('chat_user_name53421') === message.username ? localStorage.getItem('chat_user_name53421') : message.username}:</strong> {message.data}</p>
             )
           })}
           </div>
           <textarea className="chatInput" onKeyDown={sendMessageIfEnter} ref={messageRef}></textarea>
           <button onClick={saveMessage} className="chatSendBtn">Send!</button>
+          <button onClick={() => setChangeUser(true)} className="chatSendBtn">Change username</button>
       </div>
     )
   }

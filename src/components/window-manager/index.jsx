@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable space-infix-ops */
 import React, { useRef, useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import './styles.css'
@@ -13,7 +15,7 @@ export default function PwdWindowManager () {
   const removeWindow = (event) => {
     const elem = document.querySelector('#' + event.toString())
     for (let i = 0; i < windowArray.length; i++) {
-      if (windowArray[i].props.gameID === elem.children[1].id) {
+      if (windowArray[i].props.gameID === elem.children[2].id) {
         windowArray.splice(i, 1)
       }
     }
@@ -31,15 +33,23 @@ export default function PwdWindowManager () {
       windowArray.push(newChat)
     }
 
+    let x = 60
+    let y = 100
+
     ReactDOM.render(
       windowArray.map(appWindow => {
         return (
-        <Draggable>
+        <Draggable
+        key={Math.random()}
+        handle=".handle"
+        defaultPosition={{ x: x+=30, y: y+=30 }}
+        position={null}
+        >
           <div
           className="new-window"
           id={'new-window' + i++}
-          >
-            <button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
+          ><button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
+            <div className="handle">Drag me...</div>
             {appWindow}
           </div>
         </Draggable>

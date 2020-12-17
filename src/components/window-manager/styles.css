@@ -6,18 +6,14 @@
 }
 
 .new-window {
-  min-height:550px;
-  max-height: fit-content;
-  min-width:500px;
-  max-width: fit-content;
   border:15px;
   background:green;
-  overflow:auto;
   padding:1em;
+  overflow:auto;
   border:#ffff00 1px solid;
   box-shadow:2px 2px 2px 2px #008000;
-  margin:1rem;
-  position:relative;
+  margin:-50px;
+  position:absolute;
 }
 
 .ActivityBar {
@@ -64,6 +60,7 @@
   border:none;
   float:right;
   background:#7cce7c;
+  outline:none;
 }
 
 .closeBtn:hover {
@@ -77,10 +74,18 @@
 }
 
 .draggable {
-  opacity:0.8;
+  opacity:0.5;
 }
 
-.inFocus {
-  z-index:100;
-  opacity:1;
+.handle {
+  position:absolute;
+  top:10px;
+  left:10px;
+  font-size:1.2em;
+  font-weight:bold;
+  cursor:move;
+}
+
+.handle:active {
+  color:white;
 }

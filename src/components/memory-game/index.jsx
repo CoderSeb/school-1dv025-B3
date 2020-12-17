@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import MemoryGameBoard from './memory-game-board'
-
+import './styles.css'
 /**
  * MemoryGame main function.
  *
@@ -13,12 +13,10 @@ export default function MemoryGame ({ gameID }) {
   const [turned, setTurned] = useState([])
   const [matched, setMatched] = useState([])
   const [stopGame, setStopGame] = useState(false)
-
-  useEffect(() => {
-    setCards(createDeck())
-  }, [])
+  const [clickCount, setClickCount] = useState(0)
 
   const handleClick = (id) => {
+    setClickCount(clickCount + 1)
     setStopGame(true)
     if (turned.length === 0) {
       setTurned([id])
@@ -55,19 +53,36 @@ export default function MemoryGame ({ gameID }) {
    * @returns {boolean} returns true if the id exists.
    */
   const clickedTwice = id => turned.includes(id)
+  if (cards.length < 1) {
+    setCards(createDeck(8))
+  }
 
-  return (
-    <div id={gameID}>
-      <h2>Memory Game</h2>
-      <MemoryGameBoard
-        cards={cards}
-        turned={turned}
-        handleClick={handleClick}
-        gamestop={stopGame}
-        matched={matched}
-      />
+  if (cards.length > 2 && cards.length === matched.length) {
+    return (
+      <div className="MemoryContainer" id={gameID}>
+      <h1 className="winTitle">Memory Game</h1>
+      <h2>Well done!</h2>
+      <h3>You finished the game with {clickCount} clicks!</h3>
     </div>
-  )
+    )
+  } else {
+    return (
+      <div className="MemoryContainer" id={gameID}>
+        <h2>Memory Game</h2>
+        <MemoryGameBoard
+          cards={cards}
+          turned={turned}
+          handleClick={handleClick}
+          gamestop={stopGame}
+          matched={matched}
+        />
+        <button onClick={() => setCards(createDeck(8))}>4x4</button>
+        <button onClick={() => setCards(createDeck(4))}>4x2</button>
+        <button onClick={() => setCards(createDeck(2))}>2x2</button>
+        <span>You have clicked: {clickCount} times...</span>
+      </div>
+    )
+  }
 }
 
 /**
@@ -93,9 +108,11 @@ function durstenfeldShuffle (deck) {
  *
  * @returns {Array} as the new deck of cards shuffled with the durstenfeldShuffle function.
  */
-function createDeck () {
+function createDeck (numberOfCards) {
   let id = 0
-  const cards = ['octopus', 'gramophone', 'clock', 'teacup', 'rose', 'scissors', 'tophat', 'skull'].reduce((x, description) => {
+  const allCards = ['octopus', 'gramophone', 'clock', 'teacup', 'rose', 'scissors', 'tophat', 'skull']
+  const newCards = allCards.splice(0, numberOfCards)
+  const cards = newCards.reduce((x, description) => {
     x.push({
       id: id++,
       description

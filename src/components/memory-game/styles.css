@@ -1,0 +1,40 @@
+.MemoryContainer {
+  transition:0.3s ease;
+}
+
+.MemoryContainer > button {
+  font-size:1.5em;
+  width:100px;
+  margin:20px;
+  border:none;
+  outline:none;
+  background:orange;
+  color:#c90303;
+  border-radius:6px;
+  transition:0.3s ease;
+} 
+
+.MemoryContainer > button:hover {
+  scale:1.1;
+}
+
+.MemoryContainer > button:active {
+  background:#c50202;
+  color:#ffa500;
+}
+
+.MemoryContainer > span {
+  text-align:center;
+  display:block;
+  font-size: 1.5em;
+  font-weight:bold;
+  color:#f6eb87;
+  opacity:0.8;
+}
+
+.winTitle {
+  margin-top:50px;
+  width:300px;
+  height:100px;
+  color:rgb(151, 243, 128);
+}

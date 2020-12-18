@@ -1,10 +1,14 @@
 .ChatApp {
+
+}
+
+.chatWindow {
   background:black;
   color:lime;
   border-radius:10px;
   height:800px;
-  width:800px;
-  margin:3rem auto;
+  width:700px;
+  margin:auto;
   overflow-y:scroll;
   resize:none;
   padding:1em;
@@ -27,7 +31,7 @@
 .chatMessages > p {
   padding:1em;
   border-radius:5px;
-  margin: 10px;
+  margin-top: 20px;
   word-wrap: break-word;
   word-break: break-all;
   font-size:1.3em;
@@ -55,10 +59,10 @@
 }
 
 .chatSendBtn, .chatBtnUsername {
-  width:80%;
+  width:95%;
   height:50px;
-  background:lime;
-  color:black;
+  background:rgb(3, 190, 3);
+  color:rgb(78, 54, 2);
   font-size:1.4em;
   border:none;
   outline:none;
@@ -79,7 +83,7 @@
 
 .messageTo {
   background:rgb(14, 80, 55);
-  transform:translate(-50px)
+  transform:translate(-10%)
 }
 
 .messageTo > strong {
@@ -93,7 +97,7 @@
 
 .messageFrom {
   background:rgb(83, 17, 17);
-  transform:translate(50px)
+  transform:translate(10%)
 }
 
 .messageFrom > strong {
@@ -119,3 +123,16 @@
   
 }
 
+.charLeftHead {
+  float:right;
+  margin:10px;
+  margin-right: 20px;
+  color:#83653d;
+}
+
+.conAsUser {
+  float:left;
+  margin:10px;
+  margin-left:20px;
+  color:#83653d;
+}

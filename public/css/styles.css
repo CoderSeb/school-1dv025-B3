@@ -2,3 +2,9 @@
 	margin:0;
 	padding:0;
 }
+
+.mainHead {
+	font-size:3em;
+	opacity:0.3;
+	user-select:none;
+}

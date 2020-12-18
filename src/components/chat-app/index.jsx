@@ -9,11 +9,11 @@ const api = apiText.apikey
 export default function ChatApp ({ gameID }) {
   const [messages, setMessages] = useState([])
   const [username, setUsername] = useState(localStorage.getItem('chat_user_name53421'))
+  const [charLeft, setCharLeft] = useState(120)
   const [changeUser, setChangeUser] = useState(false)
   const messageRef = useRef()
   const usernameRef = useRef()
   const websocket = useRef(null)
-
 
   useEffect(() => {
     websocket.current = new WebSocket('wss://cscloud6-127.lnu.se/socket/')
@@ -73,7 +73,7 @@ export default function ChatApp ({ gameID }) {
     return (
       <div id={gameID} className='ChatApp'>
           <h1>ChatApp</h1>
-          <h2>{username} is connected</h2>
+          <div className="chatWindow">
           <div className="chatMessages">
           {messages.map(message => {
             return (
@@ -84,9 +84,12 @@ export default function ChatApp ({ gameID }) {
             )
           })}
           </div>
-          <textarea className="chatInput" onKeyDown={sendMessageIfEnter} ref={messageRef}></textarea>
+          <h3 className="conAsUser">Connected as {username}</h3>
+          <h3 className="charLeftHead">Characters left: {charLeft}</h3>
+          <textarea className="chatInput" onKeyDown={sendMessageIfEnter} onChange={() => setCharLeft(messageRef.current.maxLength - messageRef.current.value.length)} maxLength="120" ref={messageRef}></textarea>
           <button onClick={saveMessage} className="chatSendBtn">Send!</button>
           <button onClick={() => setChangeUser(true)} className="chatSendBtn">Change username</button>
+          </div>
       </div>
     )
   }

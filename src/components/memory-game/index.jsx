@@ -60,10 +60,10 @@ export default function MemoryGame ({ gameID }) {
   if (cards.length > 2 && cards.length === matched.length) {
     return (
       <div className="MemoryContainer" id={gameID}>
-      <h1 className="winTitle">Memory Game</h1>
-      <h2>Well done!</h2>
-      <h3>You finished the game with {clickCount} clicks!</h3>
-    </div>
+        <h1 className="winTitle">Memory Game</h1>
+        <h2>Well done!</h2>
+        <h3>You finished the game with {clickCount} clicks!</h3>
+      </div>
     )
   } else {
     return (

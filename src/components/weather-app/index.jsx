@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState, useRef, useCallback } from 'react'
 import './styles.css'
 import API_KEY from './apikey.json'
 
@@ -9,7 +8,7 @@ const baseUrl = API_KEY.weatherURL
 /**
  * Weather App main function.
  *
- * @param {string} gameID
+ * @param {string} gameID as the unique id for the instance of the application.
  * @returns {object}
  */
 const WeatherApp = ({ gameID }) => {
@@ -18,6 +17,11 @@ const WeatherApp = ({ gameID }) => {
   const cityInput = useRef(null)
   const tempheader = useRef(null)
 
+  /**
+   * Asynchronous function to get the weather object from the api.
+   *
+   * @param {string} city as the city name.
+   */
   const getWeather = async (city) => {
     if (city.length > 0) {
       try {
@@ -55,16 +59,26 @@ const WeatherApp = ({ gameID }) => {
           <h2 className="cityHead">{forecast.city}</h2>
           <h3 className="timeHead">{forecast.time}</h3>
           <h3 className="skyHead">{forecast.sky}</h3>
-          <h3 onClick={setCelsius} ref={tempheader} className="tempHead">{celsius ? forecast.temp.toFixed(1) : (forecast.temp * 1.8 + 32).toFixed(1)} {celsius ? '°C' : '℉'}</h3>
+          <h3
+          onClick={setCelsius}
+          ref={tempheader}
+          className="tempHead">
+          {celsius ? forecast.temp.toFixed(1) : (forecast.temp * 1.8 + 32).toFixed(1)} {celsius ? '°C' : '℉'}</h3>
         </div>
-      )
-    }
-  )}
+        )
+      }
+      )}
       </div>
     </div>
   )
 }
 
+/**
+ * Toggle function that returns the opposite value each time its called.
+ *
+ * @param {boolean} initialValue
+ * @returns {boolean, function}
+ */
 const useToggleTemp = (initialValue = false) => {
   const [temp, setTemp] = useState(initialValue)
   const toggle = useCallback(() => {

@@ -16,6 +16,7 @@ const WeatherApp = ({ gameID }) => {
   const [forecasts, setForecasts] = useState([])
   const cityInput = useRef(null)
   const tempheader = useRef(null)
+  const forecastRef = useRef(null)
 
   /**
    * Asynchronous function to get the weather object from the api.
@@ -43,6 +44,19 @@ const WeatherApp = ({ gameID }) => {
     }
   }
 
+  const closeForecast = useCallback((ref) => {
+    setForecasts(forecasts.map((forecast, index) => {
+      console.log(forecast)
+      console.log(ref.key)
+      if (forecast.id === ref.id) {
+        console.log('Removed')
+        return ''
+      } else {
+        return forecast
+      }
+    }))
+  }, [forecasts, setForecasts])
+
   return (
       <div id={gameID} className="WeatherApp">
       <h1>Weather App</h1>
@@ -55,7 +69,8 @@ const WeatherApp = ({ gameID }) => {
       <div className="weatherInfo">
       {forecasts.map(forecast => {
         return (
-        <div key={forecast.id.toString()} className="cityForecast">
+        <div key={forecast.id.toString()} ref={forecastRef} className="cityForecast">
+          <button type="button" className="closeBtn" onClick={() => closeForecast(forecastRef)}>X</button>
           <h2 className="cityHead">{forecast.city}</h2>
           <h3 className="timeHead">{forecast.time}</h3>
           <h3 className="skyHead">{forecast.sky}</h3>

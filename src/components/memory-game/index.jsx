@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react'
 import MemoryGameBoard from './memory-game-board'
 import './styles.css'
+
 /**
  * MemoryGame main function.
  *
  * @param {string} gameID
- * @returns {object}
+ * @returns {*} - JSX object
  */
-export default function MemoryGame ({ gameID }) {
+function MemoryGame ({ gameID }) {
   const [cards, setCards] = useState([])
   const [turned, setTurned] = useState([])
   const [matched, setMatched] = useState([])
@@ -22,7 +23,7 @@ export default function MemoryGame ({ gameID }) {
       setTurned([id])
       setStopGame(false)
     } else {
-      if (clickedTwice (id)) return
+      if (clickedTwice(id)) return
       setTurned([turned[0], id])
       if (cardMatched(id)) {
         setMatched([...matched, turned[0], id])
@@ -32,6 +33,10 @@ export default function MemoryGame ({ gameID }) {
       }
     }
   }
+
+  useEffect(() => {
+    setClickCount(0)
+  }, [setCards, cards])
 
   const resetBoard = () => {
     setTurned([])
@@ -59,11 +64,11 @@ export default function MemoryGame ({ gameID }) {
 
   if (cards.length > 2 && cards.length === matched.length) {
     return (
-      <div className="MemoryContainer" id={gameID}>
-        <h1 className="winTitle">Memory Game</h1>
-        <h2>Well done!</h2>
-        <h3>You finished the game with {clickCount} clicks!</h3>
-      </div>
+        <div className="MemoryContainer" id={gameID}>
+          <h1 className="winTitle">Memory Game</h1>
+          <h2>Well done!</h2>
+          <h3>You finished the game with {clickCount} clicks!</h3>
+        </div>
     )
   } else {
     return (
@@ -126,3 +131,5 @@ function createDeck (numberOfCards) {
 
   return durstenfeldShuffle(cards)
 }
+
+export default MemoryGame

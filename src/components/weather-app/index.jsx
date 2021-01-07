@@ -44,18 +44,16 @@ const WeatherApp = ({ gameID }) => {
     }
   }
 
-  const closeForecast = useCallback((ref) => {
-    setForecasts(forecasts.map((forecast, index) => {
-      console.log(forecast)
-      console.log(ref.key)
-      if (forecast.id === ref.id) {
-        console.log('Removed')
-        return ''
-      } else {
-        return forecast
-      }
-    }))
-  }, [forecasts, setForecasts])
+  /**
+   * Takes in the clicked event and removes that forecast from the forecast array.
+   *
+   * @param {object} e as the event.
+   */
+  const closeForecast = e => {
+    const id = e.target.parentNode.id
+    console.log(id)
+    setForecasts(forecasts.filter(x => x.id !== id))
+  }
 
   return (
       <div id={gameID} className="WeatherApp">
@@ -68,19 +66,22 @@ const WeatherApp = ({ gameID }) => {
       }}>Go!</button>
       <div className="weatherInfo">
       {forecasts.map(forecast => {
-        return (
-        <div key={forecast.id.toString()} ref={forecastRef} className="cityForecast">
-          <button type="button" className="closeBtn" onClick={() => closeForecast(forecastRef)}>X</button>
-          <h2 className="cityHead">{forecast.city}</h2>
-          <h3 className="timeHead">{forecast.time}</h3>
-          <h3 className="skyHead">{forecast.sky}</h3>
-          <h3
-          onClick={setCelsius}
-          ref={tempheader}
-          className="tempHead">
-          {celsius ? forecast.temp.toFixed(1) : (forecast.temp * 1.8 + 32).toFixed(1)} {celsius ? '°C' : '℉'}</h3>
-        </div>
-        )
+        if (forecast !== '') {
+          return (
+          <div key={forecast.id.toString()} id={forecast.id.toString()} ref={forecastRef} className="cityForecast">
+            <button type="button" className="closeBtn" onClick={(e) => closeForecast(e)}>X</button>
+            <h2 className="cityHead">{forecast.city}</h2>
+            <h3 className="timeHead">{forecast.time}</h3>
+            <h3 className="skyHead">{forecast.sky}</h3>
+            <h3
+            onClick={setCelsius}
+            ref={tempheader}
+            className="tempHead">
+            {celsius ? forecast.temp.toFixed(1) : (forecast.temp * 1.8 + 32).toFixed(1)} {celsius ? '°C' : '℉'}</h3>
+          </div>
+          )
+        }
+        return (null)
       }
       )}
       </div>

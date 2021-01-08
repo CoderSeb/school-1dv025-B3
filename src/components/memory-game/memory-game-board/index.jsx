@@ -1,13 +1,33 @@
+/**
+ * Script file for the MemoryGameBoard component.
+ *
+ * @version 1.0.0
+ * @author Sebastian Åkerblom <sa224ny@student.lnu.se>
+ */
+
+// Imports
 import React from 'react'
-
 import MemoryGameCard from '../memory-game-card'
-
 import './styles.css'
 
+/**
+ * Function that returns the MemoryGameBoard component.
+ *
+ * @param {object} MemoryGameBoardProps - Deconstructed props as stated below.
+ * @param {object[]} MemoryGameBoardProps.cards - Array of cards to be created.
+ * @param {number[]} MemoryGameBoardProps.turned - Array of turned cards id.
+ * @param {Function} MemoryGameBoardProps.handleClick - Function to handle the click event.
+ * @param {boolean} MemoryGameBoardProps.gamestop - Array of turned cards id.
+ * @param {number[]} MemoryGameBoardProps.matched - Array of matched cards id.
+ * @returns {*} as the MemoryGameBoard component.
+ */
 export default function MemoryGameBoard ({
   cards, turned, handleClick, gamestop, matched
 }) {
-
+  console.log('turned: ' + turned)
+  console.log('click: ' + handleClick)
+  console.log('gamestop: ' + gamestop)
+  console.log('matched: ' + matched)
   const fourByFourStyle = {
     gridTemplateColumns: 'auto auto'
   }

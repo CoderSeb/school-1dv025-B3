@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import MemoryGameBoard from './memory-game-board'
 import './styles.css'
 
@@ -50,6 +50,15 @@ function MemoryGame ({ gameID }) {
     return clickedOne.description === clickedTwo.description
   }
 
+  const restartGame = useCallback(() => {
+    setTurned([])
+    setCards([])
+    setMatched([])
+    setStopGame(false)
+    setClickCount(0)
+    setCards(createDeck(8))
+  }, [cards, turned, matched])
+
   /**
    * Takes an id and checks if that id exists in the "turned"
    * array which then means that card have been clicked already.
@@ -68,6 +77,7 @@ function MemoryGame ({ gameID }) {
           <h1 className="winTitle">Memory Game</h1>
           <h2>Well done!</h2>
           <h3>You finished the game with {clickCount} clicks!</h3>
+          <button className="restartButton" onClick={() => restartGame()}>Try again?</button>
         </div>
     )
   } else {

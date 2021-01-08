@@ -96,7 +96,7 @@ function MemoryGame ({ gameID }) {
           <h1 className="winTitle">Memory Game</h1>
           <h2>Well done!</h2>
           <h3>You finished the game with {clickCount} clicks!</h3>
-          <button className="restartButton" onClick={() => restartGame()}>Try again?</button>
+          <button className="memoryGameRestart" onClick={() => restartGame()}>Try again?</button>
         </div>
     )
   } else {
@@ -110,9 +110,9 @@ function MemoryGame ({ gameID }) {
           gamestop={stopGame}
           matched={matched}
         />
-        <button onClick={() => setCards(createDeck(8))}>4x4</button>
-        <button onClick={() => setCards(createDeck(4))}>4x2</button>
-        <button onClick={() => setCards(createDeck(2))}>2x2</button>
+        <button className="memoryGameOptions" onClick={() => setCards(createDeck(8))}>4x4</button>
+        <button className="memoryGameOptions" onClick={() => setCards(createDeck(4))}>4x2</button>
+        <button className="memoryGameOptions" onClick={() => setCards(createDeck(2))}>2x2</button>
         <span>You have clicked: {clickCount} times...</span>
       </div>
     )

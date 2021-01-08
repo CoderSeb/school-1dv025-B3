@@ -84,11 +84,13 @@ export default function ChatApp ({ gameID }) {
             )
           })}
           </div>
-          <h3 className="conAsUser">Connected as {username}</h3>
-          <h3 className="charLeftHead">Characters left: {charLeft}</h3>
-          <textarea className="chatInput" onKeyDown={sendMessageIfEnter} onChange={() => setCharLeft(messageRef.current.maxLength - messageRef.current.value.length)} maxLength="120" ref={messageRef}></textarea>
-          <button onClick={saveMessage} className="chatSendBtn">Send!</button>
-          <button onClick={() => setChangeUser(true)} className="chatSendBtn">Change username</button>
+          <div className="chatAppInputDiv">
+            <h3 className="conAsUser">Connected as {username}</h3>
+            <h3 className="charLeftHead">Characters left: {charLeft}</h3>
+            <textarea className="chatInput" onKeyDown={sendMessageIfEnter} onChange={() => setCharLeft(messageRef.current.maxLength - messageRef.current.value.length)} maxLength="120" ref={messageRef}></textarea>
+            <button onClick={saveMessage} className="chatSendBtn">Send!</button>
+            <button onClick={() => setChangeUser(true)} className="chatSendBtn">Change username</button>
+          </div>
           </div>
       </div>
     )

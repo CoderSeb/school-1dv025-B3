@@ -6,9 +6,10 @@ h2 {
   user-select:none;
 }
 
-.MemoryContainer > button {
+.memoryGameOptions, .memoryGameRestart {
   font-size:1.5em;
   width:100px;
+  padding:0.5em;
   margin:20px;
   border:none;
   outline:none;
@@ -18,13 +19,17 @@ h2 {
   transition:0.3s ease;
 } 
 
-.MemoryContainer > button:hover {
+.memoryGameOptions:active, .memoryGameRestart:active {
   scale:1.1;
 }
 
-.MemoryContainer > button:active {
-  background:#c50202;
+.memoryGameOptions:hover, .memoryGameRestart:hover {
+  background:#479e00;
   color:#ffa500;
+}
+
+.memoryGameRestart {
+  width:200px;
 }
 
 .MemoryContainer > span {

@@ -3,11 +3,20 @@
   color:lime;
   border-radius:10px;
   height:800px;
-  width:700px;
+  width:650px;
+}
+
+.chatMessages {
+  box-sizing:border-box;
   margin:auto;
-  overflow-y:scroll;
-  resize:none;
+  top:2em;
+  height:530px;
+  width: 100%;
   padding:1em;
+  padding-right:3em;
+  display:flex;
+  flex-direction:column;
+  overflow-y:scroll;
   overscroll-behavior-y: contain;
   scroll-snap-type: y proximity;
 }
@@ -16,21 +25,13 @@
   scroll-snap-align: end;
 }
 
-.chatMessages {
-  margin:auto;
-  padding:1em;
-  width:80%;
-  display:flex;
-  flex-direction:column;
-}
-
 .chatMessages > p {
   padding:1em;
   border-radius:5px;
-  margin-top: 20px;
+  margin-top: 10px;
   word-wrap: break-word;
   word-break: break-all;
-  font-size:1.3em;
+  font-size:1.1em;
   text-align:left;
   line-height: 1.4em;
 }
@@ -79,7 +80,7 @@
 
 .messageTo {
   background:rgb(14, 80, 55);
-  transform:translate(-10%)
+  width:70%;
 }
 
 .messageTo > strong {
@@ -93,7 +94,8 @@
 
 .messageFrom {
   background:rgb(83, 17, 17);
-  transform:translate(10%)
+  width:70%;
+  margin-left:30%;
 }
 
 .messageFrom > strong {
@@ -116,7 +118,6 @@
   color:white;
   font-weight:bold;
   padding:0.5em;
-  
 }
 
 .charLeftHead {
@@ -131,4 +132,14 @@
   margin:10px;
   margin-left:20px;
   color:#83653d;
+}
+
+.chatAppInputDiv {
+  position:absolute;
+  bottom:0;
+  left:0;
+  margin-top:1em;
+  padding:0.5em;
+  height:280px;
+
 }

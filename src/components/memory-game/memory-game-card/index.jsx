@@ -15,6 +15,7 @@ export default function MemoryGameCard ({
         <img
           style={{ height, width }}
           className={turned ? 'front' : 'back'}
+          opacity={matched ? 0.5 : 1}
           src={turned || matched ? `./img/memory-game/${type}.png` : './img/memory-game/0.png'}
           alt={type}
         />

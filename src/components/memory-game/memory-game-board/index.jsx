@@ -7,16 +7,21 @@ import './styles.css'
 export default function MemoryGameBoard ({
   cards, turned, handleClick, gamestop, matched
 }) {
+
+  const fourByFourStyle = {
+    gridTemplateColumns: 'auto auto'
+  }
   return (
     <div
-    className="board">
+    className="board"
+    style={ cards.length === 4 ? fourByFourStyle : null }>
       {cards.map(card => (
         <MemoryGameCard
         key={card.id}
         type={card.description}
         id={card.id}
-        width={110}
-        height={110}
+        width={cards.length === 4 ? 170 : 110}
+        height={cards.length === 4 ? 170 : 110}
         turned={turned.includes(card.id)}
         handleClick={handleClick}
         gamestop={gamestop || matched.includes(card.id)}

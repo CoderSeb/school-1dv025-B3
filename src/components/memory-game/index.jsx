@@ -6,8 +6,8 @@ import './styles.css'
 /**
  * MemoryGame main function.
  *
- * @param {string} gameID
- * @returns {*} - JSX object
+ * @param {string} gameID as the unique game id.
+ * @returns {*} as the MemoryGame component.
  */
 function MemoryGame ({ gameID }) {
   const [cards, setCards] = useState([])
@@ -16,6 +16,12 @@ function MemoryGame ({ gameID }) {
   const [stopGame, setStopGame] = useState(false)
   const [clickCount, setClickCount] = useState(0)
 
+  /**
+   * Fires when a card has been clicked to check (if) other turned card is a match.
+   * Flips the tiles back if no match.
+   *
+   * @param {number} id as the card id.
+   */
   const handleClick = (id) => {
     setClickCount(clickCount + 1)
     setStopGame(true)
@@ -34,6 +40,7 @@ function MemoryGame ({ gameID }) {
     }
   }
 
+  // Resets click count when cards array changes.
   useEffect(() => {
     setClickCount(0)
   }, [setCards, cards])
@@ -121,6 +128,7 @@ function durstenfeldShuffle (deck) {
 /**
  * Function that returns an array of objects with the keys id and description.
  *
+ * @param {number} numberOfCards as the number of cards to be created.
  * @returns {Array} as the new deck of cards shuffled with the durstenfeldShuffle function.
  */
 function createDeck (numberOfCards) {

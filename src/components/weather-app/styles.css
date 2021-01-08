@@ -59,3 +59,17 @@
   background:white;
   color:blue;
 }
+
+.weatherClose {
+  background:rgb(75, 75, 245);
+  color: rgb(36, 200, 250);
+}
+
+.weatherClose:hover {
+  background:rgb(36, 200, 250);
+  color:rgb(75, 75, 245);
+}
+
+.weatherInfoTxt {
+  font-size: 0.7em;
+}

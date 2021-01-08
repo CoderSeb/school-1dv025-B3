@@ -9,7 +9,7 @@ const baseUrl = API_KEY.weatherURL
  * Weather App main function.
  *
  * @param {string} gameID as the unique id for the instance of the application.
- * @returns {object}
+ * @returns {*} as the weather app component.
  */
 const WeatherApp = ({ gameID }) => {
   const [celsius, setCelsius] = useToggleTemp(true)
@@ -19,7 +19,7 @@ const WeatherApp = ({ gameID }) => {
   const forecastRef = useRef(null)
 
   /**
-   * Asynchronous function to get the weather object from the api.
+   * Asynchronous function to get the weather forecast from the api.
    *
    * @param {string} city as the city name.
    */
@@ -51,7 +51,6 @@ const WeatherApp = ({ gameID }) => {
    */
   const closeForecast = e => {
     const id = e.target.parentNode.id
-    console.log(id)
     setForecasts(forecasts.filter(x => x.id !== id))
   }
 
@@ -60,6 +59,9 @@ const WeatherApp = ({ gameID }) => {
       <h1>Weather App</h1>
       <label htmlFor="cities">Write a city name to get the weather!</label>
       <input id="cities" ref={cityInput}></input>
+      <p className="weatherInfoTxt"><i>The app shows the weather forecast that is closest in time, usually the next whole hour.
+      You can click the temperature to toggle temperature units.</i></p>
+      <br />
       <button className="cityBtn" onClick={() => {
         getWeather(cityInput.current.value)
         cityInput.current.value = ''
@@ -69,10 +71,10 @@ const WeatherApp = ({ gameID }) => {
         if (forecast !== '') {
           return (
           <div key={forecast.id.toString()} id={forecast.id.toString()} ref={forecastRef} className="cityForecast">
-            <button type="button" className="closeBtn" onClick={(e) => closeForecast(e)}>X</button>
+            <button type="button" className="closeBtn weatherClose" onClick={(e) => closeForecast(e)}>X</button>
             <h2 className="cityHead">{forecast.city}</h2>
             <h3 className="timeHead">{forecast.time}</h3>
-            <h3 className="skyHead">{forecast.sky}</h3>
+            <h3 className="skyHead">Description: {forecast.sky}</h3>
             <h3
             onClick={setCelsius}
             ref={tempheader}
@@ -90,17 +92,16 @@ const WeatherApp = ({ gameID }) => {
 }
 
 /**
- * Toggle function that returns the opposite value each time its called.
+ * Toggle function that returns the opposite boolean value each time its called.
  *
- * @param {boolean} initialValue
- * @returns {boolean, function}
+ * @param {boolean} initialValue as the initial value.
+ * @returns {*[]} as the new boolean value aswell as the toggle callback function.
  */
 const useToggleTemp = (initialValue = false) => {
   const [temp, setTemp] = useState(initialValue)
   const toggle = useCallback(() => {
     setTemp(x => !x)
   }, [])
-
   return [temp, toggle]
 }
 

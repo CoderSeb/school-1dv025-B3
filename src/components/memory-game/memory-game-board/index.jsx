@@ -24,10 +24,6 @@ import './styles.css'
 export default function MemoryGameBoard ({
   cards, turned, handleClick, gamestop, matched
 }) {
-  console.log('turned: ' + turned)
-  console.log('click: ' + handleClick)
-  console.log('gamestop: ' + gamestop)
-  console.log('matched: ' + matched)
   const fourByFourStyle = {
     gridTemplateColumns: 'auto auto'
   }

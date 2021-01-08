@@ -45,11 +45,22 @@ function MemoryGame ({ gameID }) {
     setClickCount(0)
   }, [setCards, cards])
 
+  /**
+   * Function that resets the turned cards array and changes gamestop to default
+   * so the user can continue the game.
+   */
   const resetBoard = () => {
     setTurned([])
     setStopGame(false)
   }
 
+  /**
+   * Function that checks if the id of the card exists in the turned card array and
+   * then checks if their image description matches.
+   *
+   * @param {number} id as the id of the card that's been clicked.
+   * @returns {boolean} true if the id of the two turned cards match.
+   */
   const cardMatched = (id) => {
     const clickedOne = cards.find((card) => card.id === id)
     const clickedTwo = cards.find((card) => turned[0] === card.id)
@@ -57,6 +68,7 @@ function MemoryGame ({ gameID }) {
     return clickedOne.description === clickedTwo.description
   }
 
+  // Callback function to restart the game when the function is called.
   const restartGame = useCallback(() => {
     setTurned([])
     setCards([])

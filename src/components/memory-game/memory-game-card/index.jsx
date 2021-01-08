@@ -15,12 +15,12 @@ import './styles.css'
  * @param {object} MemoryGameCardProps - Deconstructed props as stated below.
  * @param {Function} MemoryGameCardProps.handleClick - Function to handle the click event.
  * @param {number} MemoryGameCardProps.id - The id to give the card.
- * @param {object[]} MemoryGameCardProps.type- Array of cards to be created.
+ * @param {string[]} MemoryGameCardProps.type - Array of card names to be used in the img path.
  * @param {number[]} MemoryGameCardProps.turned - Array of turned cards id.
- * @param {object[]} MemoryGameCardProps.height - Array of cards to be created.
- * @param {object[]} MemoryGameCardProps.width - Array of cards to be created.
- * @param {boolean} MemoryGameCardProps.gamestop - Array of turned cards id.
- * @param {number[]} MemoryGameCardProps.matched - Array of matched cards id.
+ * @param {number} MemoryGameCardProps.height - Number to specify the card height.
+ * @param {number} MemoryGameCardProps.width - Number to specify the card width.
+ * @param {boolean} MemoryGameCardProps.gamestop - To show if game is "stopped".
+ * @param {boolean} MemoryGameCardProps.matched - Comes in as true if the card have been matched.
  * @returns {*} as the MemoryGameBoard component.
  */
 export default function MemoryGameCard ({

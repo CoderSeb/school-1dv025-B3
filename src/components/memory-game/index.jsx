@@ -1,4 +1,13 @@
+/**
+ * Script file for the MemoryGame component.
+ *
+ * @version 1.0.0
+ * @author Sebastian Åkerblom <sa224ny@student.lnu.se>
+ */
+
 /* eslint-disable no-unused-vars */
+
+// Imports
 import React, { useState, useEffect, useCallback } from 'react'
 import MemoryGameBoard from './memory-game-board'
 import './styles.css'

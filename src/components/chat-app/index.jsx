@@ -1,11 +1,28 @@
+/**
+ * Script file for the ChatApp component.
+ *
+ * @version 1.0.0
+ * @author Sebastian Åkerblom <sa224ny@student.lnu.se>
+ */
+
+/* eslint-disable no-unused-vars */
+
+// Imports
 import React, { useState, useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom'
 import './styles.css'
 
+// API key stored.
 import apiText from './apikey.json'
 
+// Declaring the API key to a variable
 const api = apiText.apikey
 
+/**
+ * Main ChatApp function.
+ *
+ * @param {string} gameID as the unique game id.
+ * @returns {*} as the ChatApp component.
+ */
 export default function ChatApp ({ gameID }) {
   const [messages, setMessages] = useState([])
   const [username, setUsername] = useState(localStorage.getItem('chat_user_name53421'))
@@ -16,24 +33,45 @@ export default function ChatApp ({ gameID }) {
   const websocket = useRef(null)
 
   useEffect(() => {
+    // Creates a new websocket.
     websocket.current = new WebSocket('wss://cscloud6-127.lnu.se/socket/')
 
+    /**
+     * Called when websocket is opened.
+     *
+     * @returns {*} as a console log.
+     */
     websocket.current.onopen = () => console.log('Websocket opened')
+
+    /**
+     * Called when websocket is closed.
+     *
+     * @returns {*} as a console log.
+     */
     websocket.current.onclose = () => console.log('Websocket closed')
 
     return () => {
       websocket.current.close()
     }
   }, [])
+
   useEffect(() => {
     if (!websocket.current) return
 
+    /**
+     * Called when a message is received or sent.
+     *
+     * @param {object} e as the event.
+     */
     websocket.current.onmessage = e => {
       const message = JSON.parse(e.data)
       setMessages([...messages, message])
     }
   }, [messages, setMessages])
 
+  /**
+   * Saves the message and sends it through the websocket.
+   */
   const saveMessage = () => {
     const fullMessage = {
       type: 'message',
@@ -46,11 +84,19 @@ export default function ChatApp ({ gameID }) {
     messageRef.current.value = ''
   }
 
+  /**
+   * Saves the username in a local storage.
+   */
   const saveUsername = () => {
     localStorage.setItem('chat_user_name53421', usernameRef.current.value)
     setUsername(localStorage.getItem('chat_user_name53421'))
   }
 
+  /**
+   * Checks if an enter button was pressed and then calls the saveMessage function.
+   *
+   * @param {object} e as the event.
+   */
   const sendMessageIfEnter = (e) => {
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
       saveMessage()

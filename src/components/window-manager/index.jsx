@@ -13,54 +13,63 @@ import Draggable from 'react-draggable'
  * @returns {object} - JSX object as the window manager.
  */
 function PwdWindowManager () {
-  const [windowArray, setWindowArray] = useState([])
+  const [applicationsArray, setApplicationsArray] = useState([])
+  const windowRef = useRef(null)
   let i = 0
 
   /**
    * @param event
    */
   const removeWindow = useCallback((event) => {
-    setWindowArray(windowArray.map((window, index) => {
-      if (index === Number(event.substring(10))) {
-        return window.closed = true
+    setApplicationsArray(applicationsArray.map((application, index) => {
+      if (event === application.id) {
+        return ''
       } else {
-        return window
+        return application
       }
     }))
-  }, [windowArray, setWindowArray])
+  }, [applicationsArray, setApplicationsArray])
 
   /**
    * @param id
    */
-  const openWindow = useCallback((id) => {
-    setWindowArray(windowArray.filter(x => x !== ''))
+  const openWindow = (id) => {
+    const originalKey = id + Date.now()
+
     if (id === 'memBtn') {
+      i++
       const newMemory = {
-        appObj: <MemoryGame gameID={'n-m' + i++} />,
+        appObj: <MemoryGame gameID={ originalKey } />,
         closed: false,
-        isActive: false
+        isActive: false,
+        id: originalKey
       }
-      setWindowArray([...windowArray, newMemory])
+      setApplicationsArray([...applicationsArray, newMemory])
     }
 
     if (id === 'chatBtn') {
+      i++
       const newChat = {
-        appObj: <ChatApp gameID={'n-c' + i++} />,
+        appObj: <ChatApp gameID={ originalKey } />,
         closed: false,
-        isActive: false
+        isActive: false,
+        id: originalKey
       }
-      setWindowArray([...windowArray, newChat])
+      setApplicationsArray([...applicationsArray, newChat])
     }
 
     if (id === 'wthBtn') {
+      i++
       const newWeather = {
-        appObj: <WeatherApp gameID={'n-w' + i++} />,
+        // Sätt unikt id
+        appObj: <WeatherApp gameID={ originalKey } />,
         closed: false,
-        isActive: false
+        isActive: false,
+        id: originalKey
       }
-      setWindowArray([...windowArray, newWeather])
+      setApplicationsArray([...applicationsArray, newWeather])
     }
-  }, [windowArray, setWindowArray])
+  }
 
   let x = 60
   let y = 100
@@ -68,25 +77,26 @@ function PwdWindowManager () {
   return (
     <div className="PwdWindowManager">
       <div className="window-manager-container">
-      {windowArray.map((appWindow, index) => {
-        if (appWindow.closed === false) {
+      {applicationsArray.map((appWindow, index) => {
+        if (appWindow !== '') {
           return (
-            <Draggable
-            key={Math.random()}
-            handle=".handle"
-            defaultPosition={{ x: x+=30, y: y+=30 }}
-            >
-              <div
-              className="new-window"
-              id={'new-window' + index}
-              ><button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
-                <div className="handle">Drag me...</div>
-                {appWindow.appObj}
-              </div>
-            </Draggable>
+          <Draggable
+          key={appWindow.id}
+          handle=".handle"
+          defaultPosition={{ x: x+=30, y: y+=30 }}
+          >
+            <div
+            className="new-window"
+            id={appWindow.id}
+            ><button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
+              <div className="handle">Drag me...</div>
+              {appWindow.appObj}
+            </div>
+          </Draggable>
           )
+        } else {
+          return null
         }
-        return (null)
       })}
       </div>
       <div className="ActivityBar">

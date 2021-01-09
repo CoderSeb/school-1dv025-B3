@@ -51,7 +51,9 @@ function MemoryGame ({ gameID }) {
 
   // Resets click count when cards array changes.
   useEffect(() => {
+    resetBoard()
     setClickCount(0)
+    setMatched([])
   }, [setCards, cards])
 
   /**
@@ -95,6 +97,7 @@ function MemoryGame ({ gameID }) {
    * @returns {boolean} returns true if the id exists.
    */
   const clickedTwice = id => turned.includes(id)
+
   if (cards.length < 1) {
     setCards(createDeck(8))
   }

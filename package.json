@@ -7,8 +7,8 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "lint": "npx eslint ./src || exit 0",
-    "lint:fix": "npx eslint ./src --fix || exit 0"
+    "lint": "eslint --ext js,jsx,ts,tsx src || exit 0",
+    "lint:fix": "eslint --ext js,jsx,ts,tsx src --fix || exit 0"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,6 @@
     }
   },
   "dependencies": {
-    "fs": "0.0.1-security",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",

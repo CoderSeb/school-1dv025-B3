@@ -7,6 +7,7 @@
 
 /* eslint-disable no-return-assign */
 /* eslint-disable space-infix-ops */
+/* eslint-disable no-unused-vars */
 
 // Imports
 import React, { useState, useCallback } from 'react'

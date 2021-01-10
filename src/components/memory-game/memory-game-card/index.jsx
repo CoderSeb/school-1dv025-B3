@@ -26,7 +26,12 @@ import './styles.css'
 export default function MemoryGameCard ({
   handleClick, id, type, turned, height, width, gamestop, matched
 }) {
-
+  /**
+   * Takes in the key pressed and checks if that key is the Enter key.
+   *
+   * @param {object} event as the key pressed.
+   * @returns {Function} to handle the card flip.
+   */
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       if (matched || gamestop) {

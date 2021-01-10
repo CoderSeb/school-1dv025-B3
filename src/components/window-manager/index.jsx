@@ -20,19 +20,27 @@ function PwdWindowManager () {
   /**
    * @param event
    */
-  const removeWindow = useCallback((event) => {
-    setApplicationsArray(applicationsArray.map((application, index) => {
-      if (event === application.id) {
-        return ''
-      } else {
-        return application
-      }
-    }))
+  const removeWindow = (event) => {
+    setApplicationsArray(applicationsArray.filter(app => app.id !== event))
+  }
+
+  const getFocus = useCallback((event) => {
+    if (event.target.nodeName === 'DIV') {
+      setApplicationsArray(applicationsArray.map((app, index) => {
+        if (app.id === event.target.id) {
+          return {
+            ...app,
+            isFocused: true
+          }
+        }
+        return {
+          ...app,
+          isFocused: false
+        }
+      }))
+    }
   }, [applicationsArray, setApplicationsArray])
 
-  /**
-   * @param id
-   */
   const openWindow = (id) => {
     const originalKey = id + Date.now()
 
@@ -91,6 +99,8 @@ function PwdWindowManager () {
             <div
             className={'new-window'}
             id={appWindow.id}
+            onClick={e => getFocus(e)}
+            style={appWindow.isFocused ? { zIndex: 50 } : { zIndex: 10 }}
             ><button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
               <div className="handle">Drag me...</div>
               {appWindow.appObj}

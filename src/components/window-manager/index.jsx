@@ -1,6 +1,15 @@
+/**
+ * Script file for the PwdWindowManager component.
+ *
+ * @version 1.0.0
+ * @author Sebastian Åkerblom <sa224ny@student.lnu.se>
+ */
+
 /* eslint-disable no-return-assign */
 /* eslint-disable space-infix-ops */
-import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react'
+
+// Imports
+import React, { useState, useCallback } from 'react'
 import './styles.css'
 import MemoryGame from '../memory-game'
 import ChatApp from '../chat-app'
@@ -10,18 +19,19 @@ import Draggable from 'react-draggable'
 /**
  * Window manager to handle apps.
  *
- * @returns {object} - JSX object as the window manager.
+ * @returns {*} - JSX object as the window manager.
  */
 function PwdWindowManager () {
   const [applicationsArray, setApplicationsArray] = useState([])
-  const windowRef = useRef({})
   let i = 0
 
   /**
-   * @param event
+   * Takes in an id and removed the app with the same id from the applications array.
+   *
+   * @param {string} id as the id of the app to be removed.
    */
-  const removeWindow = (event) => {
-    setApplicationsArray(applicationsArray.filter(app => app.id !== event))
+  const removeWindow = (id) => {
+    setApplicationsArray(applicationsArray.filter(app => app.id !== id))
   }
 
   const getFocus = useCallback((event) => {
@@ -41,6 +51,11 @@ function PwdWindowManager () {
     }
   }, [applicationsArray, setApplicationsArray])
 
+  /**
+   * Takes in an id and adds that corresponding app object to the applications array.
+   *
+   * @param {string} id as the id of the app to open.
+   */
   const openWindow = (id) => {
     const originalKey = id + Date.now()
 

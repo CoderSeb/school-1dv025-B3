@@ -16,7 +16,8 @@
   },
   "contributors": [
     "Johan Leitet <johan.leitet@lnu.se>",
-    "Mats Loock <mats.loock@lnu.se>"
+    "Mats Loock <mats.loock@lnu.se>",
+    "Sebastian Åkerblom <sa224ny@student.lnu.se>"
   ],
   "license": "MIT",
   "private": true,
@@ -51,7 +52,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
-    "react-geocode": "^0.2.2",
-    "use-socket.io-client": "^1.1.0"
+    "react-geocode": "^0.2.2"
   }
 }

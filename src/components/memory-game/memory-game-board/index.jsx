@@ -5,6 +5,8 @@
  * @author Sebastian Åkerblom <sa224ny@student.lnu.se>
  */
 
+/* eslint-disable no-unused-vars */
+
 // Imports
 import React from 'react'
 import MemoryGameCard from '../memory-game-card'

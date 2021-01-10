@@ -1,3 +1,13 @@
+/**
+ * Script file for the WeatherApp component.
+ *
+ * @version 1.0.0
+ * @author Sebastian Åkerblom <sa224ny@student.lnu.se>
+ */
+
+/* eslint-disable no-unused-vars */
+
+// Imports
 import React, { useState, useRef, useCallback } from 'react'
 import './styles.css'
 import API_KEY from './apikey.json'

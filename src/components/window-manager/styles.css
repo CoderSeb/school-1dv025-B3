@@ -16,6 +16,10 @@
   position:absolute;
 }
 
+.new-window:focus {
+  border:#0f6401 3px solid;
+}
+
 .ActivityBar {
   height:90vh;
   min-height:610px;
@@ -50,6 +54,11 @@
 }
 
 .appSlots:active {
+  background:rgb(131, 248, 131);
+  color:rgb(2, 8, 1);
+}
+
+.appSlots:focus {
   background:rgb(131, 248, 131);
   color:rgb(2, 8, 1);
 }

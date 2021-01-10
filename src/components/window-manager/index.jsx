@@ -101,6 +101,7 @@ function PwdWindowManager () {
             id={appWindow.id}
             onClick={e => getFocus(e)}
             style={appWindow.isFocused ? { zIndex: 50 } : { zIndex: 10 }}
+            tabIndex="1"
             ><button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
               <div className="handle">Drag me...</div>
               {appWindow.appObj}
@@ -113,9 +114,9 @@ function PwdWindowManager () {
       })}
       </div>
       <div className="ActivityBar">
-        <button className="appSlots" id="memBtn" onClick={e => openWindow(e.target.id)}>Memory Game</button>
-        <button className="appSlots" id="chatBtn" onClick={e => openWindow(e.target.id)}>Chat App</button>
-        <button className="appSlots" id="wthBtn" onClick={e => openWindow(e.target.id)}>Weather App</button>
+        <button className="appSlots" tabIndex="0" id="memBtn" onClick={e => openWindow(e.target.id)}>Memory Game</button>
+        <button className="appSlots" tabIndex="0" id="chatBtn" onClick={e => openWindow(e.target.id)}>Chat App</button>
+        <button className="appSlots" tabIndex="0" id="wthBtn" onClick={e => openWindow(e.target.id)}>Weather App</button>
       </div>
     </div>
   )

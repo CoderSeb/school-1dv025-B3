@@ -6,6 +6,10 @@
   user-select:none;
 }
 
+.turn-container:focus {
+  outline:2px solid;
+}
+
 .turn-container.turned .turner {
   transform: rotateY(180deg);
 }

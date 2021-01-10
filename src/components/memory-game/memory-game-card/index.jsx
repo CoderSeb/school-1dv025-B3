@@ -26,12 +26,25 @@ import './styles.css'
 export default function MemoryGameCard ({
   handleClick, id, type, turned, height, width, gamestop, matched
 }) {
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      if (matched || gamestop) {
+        return null
+      } else {
+        handleClick(id)
+      }
+    }
+  }
+
   return (
     <div
       className={`turn-container ${turned ? 'turned' : ''}`}
       style={{ width: width, height: height, opacity: matched ? 0.5 : 1 }}
       opacity={matched ? 0.5 : 1}
       onClick={() => matched || gamestop ? null : handleClick(id)}
+      onKeyPress={handleKeyPress}
+      tabIndex='6'
       >
       <div className="turner">
         <img

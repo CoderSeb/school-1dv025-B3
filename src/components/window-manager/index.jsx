@@ -14,7 +14,7 @@ import Draggable from 'react-draggable'
  */
 function PwdWindowManager () {
   const [applicationsArray, setApplicationsArray] = useState([])
-  const windowRef = useRef(null)
+  const windowRef = useRef({})
   let i = 0
 
   /**
@@ -42,7 +42,8 @@ function PwdWindowManager () {
         appObj: <MemoryGame gameID={ originalKey } />,
         closed: false,
         isActive: false,
-        id: originalKey
+        id: originalKey,
+        isFocused: false
       }
       setApplicationsArray([...applicationsArray, newMemory])
     }
@@ -53,7 +54,8 @@ function PwdWindowManager () {
         appObj: <ChatApp gameID={ originalKey } />,
         closed: false,
         isActive: false,
-        id: originalKey
+        id: originalKey,
+        isFocused: false
       }
       setApplicationsArray([...applicationsArray, newChat])
     }
@@ -65,7 +67,8 @@ function PwdWindowManager () {
         appObj: <WeatherApp gameID={ originalKey } />,
         closed: false,
         isActive: false,
-        id: originalKey
+        id: originalKey,
+        isFocused: false
       }
       setApplicationsArray([...applicationsArray, newWeather])
     }
@@ -86,7 +89,7 @@ function PwdWindowManager () {
           defaultPosition={{ x: x+=30, y: y+=30 }}
           >
             <div
-            className="new-window"
+            className={'new-window'}
             id={appWindow.id}
             ><button type="button" className="closeBtn" onClick={e => removeWindow(e.target.parentNode.id)}>X</button>
               <div className="handle">Drag me...</div>

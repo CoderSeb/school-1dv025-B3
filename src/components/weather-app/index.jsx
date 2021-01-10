@@ -28,6 +28,9 @@ const WeatherApp = ({ gameID }) => {
       try {
         const res = await fetch(`${baseUrl}/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`)
         const object = await res.json()
+        if (object.cod === '404') {
+          cityInput.current.value = object.message.toUpperCase()
+        }
         const parameters = object.list
         const index = 3000
         const cityWeather = {
@@ -39,7 +42,7 @@ const WeatherApp = ({ gameID }) => {
         }
         setForecasts([...forecasts, cityWeather])
       } catch (err) {
-        console.log(err)
+        console.error(err.message)
       }
     }
   }

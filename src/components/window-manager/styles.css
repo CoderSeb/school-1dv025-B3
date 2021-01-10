@@ -90,3 +90,7 @@
 .handle:active {
   color:white;
 }
+
+.getFocus {
+  z-index: 100;
+}

@@ -58,6 +58,7 @@ export default function MemoryGameHighscore ({ score, gametype }) {
   const clearHighscore = () => {
     setHighscoreList([])
   }
+
   return (
     <div className="MemoryGameHighscore">
     <hr/>
@@ -108,7 +109,7 @@ export default function MemoryGameHighscore ({ score, gametype }) {
         <hr/>
       <label ref={highscoreLabel} htmlFor=".MemoryGameHighscoreInput">Type in your name and press save to save your score!</label>
       <input ref={highscoreName} className="MemoryGameHighscoreInput" type="text"/>
-      <button ref={highscoreButton} onClick={e => saveAndShowHighscoreList(highscoreName.current.value, score)} className="MemoryGameHighscoreButton">Save score</button>
+      <button ref={highscoreButton} type="button" onClick={e => saveAndShowHighscoreList(highscoreName.current.value, score)} className="MemoryGameHighscoreButton">Save score</button>
     </div>
   )
 }

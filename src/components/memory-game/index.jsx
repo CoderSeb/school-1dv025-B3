@@ -129,7 +129,7 @@ function MemoryGame ({ gameID }) {
         <div className="MemoryContainer" id={gameID}>
           <h1 className="winTitle">Memory Game</h1>
           <h2>Well done!</h2>
-          <h3>You finished the game with {clickCount} clicks!</h3>
+          <h3>You finished the game with {clickCount} clicks!<br /><i>This will be converted to amount of tries if you save your progress to the scoreboard.</i></h3>
           <button className="memoryGameRestart" onClick={() => restartGame()}>Try again?</button>
           <MemoryGameHighscore score={clickCount} gametype={getGametype(cards)} />
         </div>

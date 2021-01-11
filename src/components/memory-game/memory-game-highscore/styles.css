@@ -1,0 +1,49 @@
+.MemoryGameHighscore > label {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.MemoryGameHighscoreInput {
+  width:70%;
+  font-size: 1.2em;
+  outline:none;
+  border:none;
+  margin:1em;
+  padding:0.5em;
+  text-align:center;
+  border-radius:6px;
+  background:rgb(103, 212, 103);
+}
+
+.MemoryGameHighscoreInput:focus {
+  background:rgb(205, 212, 103);
+}
+
+.MemoryGameHighscoreButton {
+  width:70%;
+  font-size: 1.2em;
+  outline:none;
+  padding:0.5em;
+  border:none;
+  border-radius:6px;
+  background:#4c6b19;
+  color:rgb(164, 248, 104);
+}
+
+.MemoryGameHighscoreButton:hover {
+  background:rgb(164, 248, 104);
+  color:#4c6b19;
+}
+
+.MemoryGameHighscoreButton:active {
+  background:rgb(239, 248, 104);
+}
+
+.MemoryGameHighscoreButton:focus {
+  border:2px solid;
+}
+
+.MemoryGameHighscoreList {
+  font-size:1.3em;
+  margin:1em;
+}

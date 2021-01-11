@@ -10,6 +10,7 @@
 // Imports
 import React, { useState, useEffect, useCallback } from 'react'
 import MemoryGameBoard from './memory-game-board'
+import MemoryGameHighscore from './memory-game-highscore'
 import './styles.css'
 
 /**
@@ -24,6 +25,27 @@ function MemoryGame ({ gameID }) {
   const [matched, setMatched] = useState([])
   const [stopGame, setStopGame] = useState(false)
   const [clickCount, setClickCount] = useState(0)
+
+  /**
+   * Function to get the game mode based on amount of cards.
+   *
+   * @param {string[]} cards as the array of cards.
+   * @returns {string} as the game mode.
+   */
+  const getGametype = (cards) => {
+    let gametype = ''
+    switch (cards.length) {
+      case 8:
+        gametype = '4x2'
+        break
+      case 4:
+        gametype = '2x2'
+        break
+      default:
+        gametype = '4x4'
+    }
+    return gametype
+  }
 
   /**
    * Fires when a card has been clicked to check (if) other turned card is a match.
@@ -109,6 +131,7 @@ function MemoryGame ({ gameID }) {
           <h2>Well done!</h2>
           <h3>You finished the game with {clickCount} clicks!</h3>
           <button className="memoryGameRestart" onClick={() => restartGame()}>Try again?</button>
+          <MemoryGameHighscore score={clickCount} gametype={getGametype(cards)} />
         </div>
     )
   } else {

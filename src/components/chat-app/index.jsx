@@ -14,7 +14,7 @@ import './styles.css'
 // API key stored.
 import apiText from './apikey.json'
 
-// Declaring the API key to a variable
+// Declaring the API key to a variable.
 const api = apiText.apikey
 
 /**
@@ -51,10 +51,12 @@ export default function ChatApp ({ gameID }) {
     websocket.current.onclose = () => console.log('Websocket closed')
 
     return () => {
+      // Called when chat application is closed to also close the current websocket.
       websocket.current.close()
     }
   }, [])
 
+  // Called when messages array changes.
   useEffect(() => {
     if (!websocket.current) return
 

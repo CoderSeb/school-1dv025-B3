@@ -21,6 +21,8 @@ import './styles.css'
  */
 export default function MemoryGameHighscore ({ score, gametype }) {
   const highscoreName = useRef()
+  const highscoreButton = useRef()
+  const highscoreLabel = useRef()
   const [highscoreList, setHighscoreList] = useState(() => {
     const highscoreData = localStorage.getItem('memorygame-user53421')
     return highscoreData ? JSON.parse(highscoreData) : []
@@ -39,21 +41,35 @@ export default function MemoryGameHighscore ({ score, gametype }) {
       gametype: gametype
     }
     setHighscoreList([...highscoreList, newUser])
+    highscoreLabel.current.style.display = 'none'
+    highscoreName.current.style.display = 'none'
+    highscoreButton.current.style.display = 'none'
   }
 
+  // Called when highscoreList changes.
   useEffect(() => {
-    highscoreList.sort((a, b) => a.score + b.score)
+    highscoreList.sort((a, b) => a.score - b.score)
     localStorage.setItem('memorygame-user53421', JSON.stringify(highscoreList))
   }, [highscoreList])
 
+  /**
+   * Function to clear the highscore list.
+   */
+  const clearHighscore = () => {
+    setHighscoreList([])
+  }
   return (
     <div className="MemoryGameHighscore">
+    <hr/>
+    <h2>Highscore</h2>
+    <p className="clearScore" onClick={e => clearHighscore()}>Clear scoreboard?</p>
         <ol className="MemoryGameHighscoreList">
+        <h3>2x2</h3>
         {highscoreList.length > 0
           ? highscoreList.map((scoreObj, index) => {
-              if (scoreObj !== null) {
+              if (scoreObj !== null && scoreObj.gametype === '2x2') {
                 return (
-                  <li key={index}><strong>Mode: {scoreObj.gametype} | {scoreObj.username}</strong>: {scoreObj.score} tries!</li>
+                  <li key={index}><strong>{scoreObj.username}</strong>: {scoreObj.score} tries!</li>
                 )
               } else {
                 return null
@@ -61,9 +77,38 @@ export default function MemoryGameHighscore ({ score, gametype }) {
             })
           : null}
         </ol>
-      <label htmlFor=".MemoryGameHighscoreInput">Type in your name and press save to save your score!</label>
+        <ol className="MemoryGameHighscoreList">
+        <h3>4x2</h3>
+        {highscoreList.length > 0
+          ? highscoreList.map((scoreObj, index) => {
+              if (scoreObj !== null && scoreObj.gametype === '4x2') {
+                return (
+                  <li key={index}><strong>{scoreObj.username}</strong>: {scoreObj.score} tries!</li>
+                )
+              } else {
+                return null
+              }
+            })
+          : null}
+        </ol>
+        <ol className="MemoryGameHighscoreList">
+        <h3>4x4</h3>
+        {highscoreList.length > 0
+          ? highscoreList.map((scoreObj, index) => {
+              if (scoreObj !== null && scoreObj.gametype === '4x4') {
+                return (
+                  <li key={index}><strong>{scoreObj.username}</strong>: {scoreObj.score} tries!</li>
+                )
+              } else {
+                return null
+              }
+            })
+          : null}
+        </ol>
+        <hr/>
+      <label ref={highscoreLabel} htmlFor=".MemoryGameHighscoreInput">Type in your name and press save to save your score!</label>
       <input ref={highscoreName} className="MemoryGameHighscoreInput" type="text"/>
-      <button onClick={e => saveAndShowHighscoreList(highscoreName.current.value, score)} className="MemoryGameHighscoreButton">Save score</button>
+      <button ref={highscoreButton} onClick={e => saveAndShowHighscoreList(highscoreName.current.value, score)} className="MemoryGameHighscoreButton">Save score</button>
     </div>
   )
 }

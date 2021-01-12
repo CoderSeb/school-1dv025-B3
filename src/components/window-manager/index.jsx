@@ -111,6 +111,7 @@ function PwdWindowManager () {
           key={appWindow.id}
           handle=".handle"
           defaultPosition={{ x: x+=30, y: y+=30 }}
+          bounds="body"
           >
             <div
             className={'new-window'}

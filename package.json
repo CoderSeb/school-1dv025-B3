@@ -7,8 +7,8 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "lint": "npx eslint ./src || exit 0",
-    "lint:fix": "npx eslint ./src --fix || exit 0"
+    "lint": "eslint --ext js,jsx,ts,tsx src || exit 0",
+    "lint:fix": "eslint --ext js,jsx,ts,tsx src --fix || exit 0"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
   },
   "contributors": [
     "Johan Leitet <johan.leitet@lnu.se>",
-    "Mats Loock <mats.loock@lnu.se>"
+    "Mats Loock <mats.loock@lnu.se>",
+    "Sebastian Åkerblom <sa224ny@student.lnu.se>"
   ],
   "license": "MIT",
   "private": true,
@@ -45,5 +46,11 @@
     "devOptions": {
       "bundle": false
     }
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-draggable": "^4.4.3",
+    "react-geocode": "^0.2.2"
   }
 }

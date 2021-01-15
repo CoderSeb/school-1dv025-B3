@@ -1,0 +1,75 @@
+.WeatherApp {
+  height:600px;
+  width:500px;
+  padding:1em;
+  overflow-y:scroll;
+  margin-top:3em;
+  color:rgb(158, 223, 253);
+  user-select: none;
+  font-size:1.3em;
+}
+
+#cities {
+  width:80%;
+  text-align:center;
+  height:40px;
+  color:rgb(6, 54, 63);
+  background:rgb(138, 228, 250);
+  font-weight:bold;
+  margin:10px;
+  outline:none;
+  border:none;
+  border-radius:5px;
+  padding:3px;
+  font-size:1.2em;
+  font-style:italic;
+}
+
+.cityForecast {
+  background:rgb(2, 2, 185);
+  display:inline-block;
+  padding:1em;
+  margin:10px auto;
+  width:80%;
+  border-radius:10px;
+  box-shadow:2px 2px 5px 2px #11af03;
+
+}
+
+.tempHead {
+  cursor: pointer;
+}
+
+.cityBtn {
+  width:150px;
+  font-size:1.3em;
+  padding:0.5em;
+  background:blue;
+  color:white;
+  border:none;
+  outline:none;
+  transition:0.2s ease;
+}
+
+.cityBtn:hover {
+  scale:1.1;
+}
+
+.cityBtn:active {
+  background:white;
+  color:blue;
+}
+
+.weatherClose {
+  background:rgb(75, 75, 245);
+  color: rgb(36, 200, 250);
+}
+
+.weatherClose:hover {
+  background:rgb(36, 200, 250);
+  color:rgb(75, 75, 245);
+}
+
+.weatherInfoTxt {
+  font-size: 0.7em;
+}

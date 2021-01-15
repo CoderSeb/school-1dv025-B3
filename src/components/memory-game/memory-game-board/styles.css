@@ -1,0 +1,11 @@
+.board {
+  width: fit-content;
+  margin:auto;
+  display:grid;
+  grid-template-columns:auto auto auto auto;
+  grid-template-rows:auto;
+  gap:10px;
+  background:#fbfb7a;
+  padding:2em;
+  overflow:hidden;
+}

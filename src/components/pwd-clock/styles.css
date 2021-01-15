@@ -1,0 +1,8 @@
+.pwd-clock {
+  position: absolute;
+  right:15px;
+  top:1px;
+  font-size:1.2em;
+  color:#1b741b;
+  user-select: none;
+}

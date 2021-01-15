@@ -1,0 +1,144 @@
+.chatWindow {
+  background:black;
+  color:lime;
+  border-radius:10px;
+  height:800px;
+  width:650px;
+}
+
+.chatMessages {
+  box-sizing:border-box;
+  margin:auto;
+  top:2em;
+  height:530px;
+  width: 100%;
+  padding:1em;
+  padding-right:3em;
+  display:flex;
+  flex-direction:column;
+  overflow-y:scroll;
+  scroll-snap-type: y proximity;
+}
+
+.chatMessages:last-child {
+  scroll-snap-align: end;
+}
+
+.chatMessages > p {
+  padding:1em;
+  border-radius:5px;
+  margin-top: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size:1.1em;
+  text-align:left;
+  line-height: 1.4em;
+}
+
+.chatInput {
+  border:none;
+  border-radius:10px;
+  width:90%;
+  background:rgb(55, 63, 49);
+  color:lime;
+  padding:1em;
+  height:50px;
+  resize:none;
+  font-size:1.5em;
+  margin:auto;
+  transition:0.5s ease;
+  outline:none;
+}
+
+.chatInput:focus {
+  background:rgb(46, 7, 7);
+}
+
+.chatSendBtn, .chatBtnUsername {
+  width:95%;
+  height:50px;
+  background:rgb(3, 190, 3);
+  color:rgb(78, 54, 2);
+  font-size:1.4em;
+  border:none;
+  outline:none;
+  border-radius:10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  transition:0.2s ease;
+}
+
+.chatSendBtn:hover, .chatBtnUsername:hover {
+  opacity: 0.8;
+}
+
+.chatSendBtn:active, .chatBtnUsername:active {
+  background:black;
+  color:white;
+}
+
+.messageTo {
+  background:rgb(14, 80, 55);
+  width:70%;
+}
+
+.messageTo > strong {
+  background:rgb(241, 123, 13);
+  color:rgb(189, 7, 221);
+  padding:0.2em 1em;
+  border-radius:5px;
+  margin-right:1em;
+  opacity:0.7;
+}
+
+.messageFrom {
+  background:rgb(83, 17, 17);
+  width:70%;
+  margin-left:30%;
+}
+
+.messageFrom > strong {
+  background:rgb(223, 238, 9);
+  color:rgb(13, 10, 235);
+  padding:0.2em 1em;
+  border-radius:5px;
+  margin-right:1em;
+  opacity:0.7;
+}
+
+.usernameInput {
+  width:70%;
+  height:2em;
+  font-size:1.1em;
+  border:none;
+  border-radius:5px;
+  margin:1em;
+  background:rgb(9, 49, 2);
+  color:white;
+  font-weight:bold;
+  padding:0.5em;
+}
+
+.charLeftHead {
+  float:right;
+  margin:10px;
+  margin-right: 20px;
+  color:#83653d;
+}
+
+.conAsUser {
+  float:left;
+  margin:10px;
+  margin-left:20px;
+  color:#83653d;
+}
+
+.chatAppInputDiv {
+  position:absolute;
+  bottom:0;
+  left:0;
+  margin-top:1em;
+  padding:0.5em;
+  height:280px;
+
+}
